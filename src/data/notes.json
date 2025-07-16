@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "title": "Meeting Notes: Q4 Planning",
+    "content": "Key points discussed:\n- Revenue targets for Q4\n- New product launch timeline\n- Team capacity planning\n- Budget allocation for marketing\n\nAction items:\n1. Schedule follow-up with marketing team\n2. Review resource allocation\n3. Prepare presentation for stakeholders",
+    "created_at": "2023-10-01T09:30:00Z",
+    "updated_at": "2023-10-01T09:30:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Project Architecture Overview",
+    "content": "System components:\n- Frontend: React with TypeScript\n- Backend: Node.js with Express\n- Database: PostgreSQL\n- Cache layer: Redis\n\nAPI endpoints structure and authentication flow documented. Need to review scaling strategy.",
+    "created_at": "2023-10-02T14:15:00Z",
+    "updated_at": "2023-10-02T14:15:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Book Summary: Clean Code",
+    "content": "Important concepts:\n- Meaningful names\n- Functions should do one thing\n- Comments should explain why, not what\n- Test-driven development principles\n\nNeed to apply these concepts in our codebase review next week.",
+    "created_at": "2023-10-03T11:20:00Z",
+    "updated_at": "2023-10-03T11:20:00Z"
+  },
+  {
+    "id": "4",
+    "title": "Weekly Goals",
+    "content": "This week's priorities:\n1. Complete user authentication module\n2. Review pull requests\n3. Update documentation\n4. Set up automated testing pipeline\n5. Meet with UX team for feedback",
+    "created_at": "2023-10-04T08:45:00Z",
+    "updated_at": "2023-10-04T08:45:00Z"
+  },
+  {
+    "id": "5",
+    "title": "Bug Investigation: Login Issues",
+    "content": "Users reporting intermittent login failures.\nPotential causes:\n- Session management\n- Cache invalidation\n- Network timeout\n\nSteps to reproduce and current investigation status documented.",
+    "created_at": "2023-10-05T16:30:00Z",
+    "updated_at": "2023-10-05T16:30:00Z"
+  },
+  {
+    "id": "6",
+    "title": "API Documentation Updates",
+    "content": "Updated endpoints:\n- /users/profile\n- /auth/refresh\n- /api/v2/search\n\nAdded new authentication headers and rate limiting information. Swagger documentation updated.",
+    "created_at": "2023-10-06T13:20:00Z",
+    "updated_at": "2023-10-06T13:20:00Z"
+  },
+  {
+    "id": "7",
+    "title": "Database Optimization Ideas",
+    "content": "Potential improvements:\n1. Index optimization for search queries\n2. Partition large tables\n3. Implement query caching\n4. Regular VACUUM analysis\n\nNeed to schedule maintenance window for implementation.",
+    "created_at": "2023-10-07T10:45:00Z",
+    "updated_at": "2023-10-07T10:45:00Z"
+  },
+  {
+    "id": "8",
+    "title": "Design System Components",
+    "content": "New components added:\n- Button variants\n- Form elements\n- Modal templates\n- Toast notifications\n\nColor scheme and typography guidelines updated. Need to create documentation.",
+    "created_at": "2023-10-08T15:10:00Z",
+    "updated_at": "2023-10-08T15:10:00Z"
+  },
+  {
+    "id": "9",
+    "title": "Security Review Findings",
+    "content": "Key findings:\n1. Dependencies need updating\n2. Input validation improvements needed\n3. SSL certificate expiring soon\n4. Password policy update required\n\nPrioritized list of fixes created for next sprint.",
+    "created_at": "2023-10-09T09:00:00Z",
+    "updated_at": "2023-10-09T09:00:00Z"
+  },
+  {
+    "id": "10",
+    "title": "Learning Resources",
+    "content": "Useful links and resources:\n- TypeScript advanced patterns course\n- React performance optimization guide\n- Docker best practices\n- GraphQL workshop materials\n\nShare with team during next knowledge sharing session.",
+    "created_at": "2023-10-10T12:00:00Z",
+    "updated_at": "2023-10-10T12:00:00Z"
+  }
+]

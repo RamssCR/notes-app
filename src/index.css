@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Font typography */
+  --font-lato: 'Lato', sans-serif;
+  --font-fira: 'Fira Sans', sans-serif;
+  --font-rubik: 'Rubik', monospace;
+
+  /* Colors */
+  --color-primary: oklch(21.779% 0.00002 271.152);
+  --color-border: oklch(87.381% 0.00107 12.081);
+  --color-background: oklch(97.015% 0.00011 271.152);
+  --color-muted: oklch(95.476% 0.00588 264.661);
+  --color-muted-foreground: oklch(43.413% 0.00393 16.618);
+
+  /* Commons */
+  --color-success-background: oklch(95.396% 0.01981 155.18);
+  --color-success-text: oklch(33.119% 0.05298 159.767);
+  
+  --color-error-background: oklch(94.781% 0.01982 24.89);
+  --color-error-text: oklch(29.999% 0.03582 30.159);
+
+  --color-warning-background: oklch(96.853% 0.02805 79.441);
+  --color-warning-text: oklch(33.332% 0.03198 84.213);
+
+  --color-info-background: oklch(95.325% 0.02188 239.583);
+  --color-info-text: oklch(27.717% 0.12918 270.635);
+
+  /* Custom properties for dark mode */
+  --color-dark-primary: oklch(90.67% 0.0001 271.152);
+  --color-dark-border: oklch(37.909% 0.00004 271.152);
+  --color-dark-background: oklch(26.862% 0.00003 271.152);
+  --color-dark-muted: oklch(21.455% 0.00156 16.419);
+  --color-dark-muted-foreground: oklch(76.838% 0.00225 15.067);
+
+  /* State colors for dark mode */
+  --color-dark-success-background: oklch(33.119% 0.05298 159.767);
+  --color-dark-success-text: oklch(95.396% 0.01981 155.18);
+
+  --color-dark-error-background: oklch(29.999% 0.03582 30.159);
+  --color-dark-error-text: oklch(94.781% 0.01982 24.89);
+
+  --color-dark-warning-background: oklch(31.859% 0.02988 60.059);
+  --color-dark-warning-text: oklch(96.853% 0.02805 79.441);
+
+  --color-dark-info-background: oklch(28.765% 0.12886 271.211);
+  --color-dark-info-text: oklch(95.325% 0.02188 239.583);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Font families */
+  --font-family-lato: var(--font-lato);
+  --font-family-fira: var(--font-fira);
+  --font-family-rubik: var(--font-rubik);
+
+  /* Colors */
+  --color-primary: var(--color-primary);
+  --color-border: var(--color-border);
+  --color-background: var(--color-background);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+
+  /* State colors */
+  --color-success-background: var(--color-success-background);
+  --color-success-text: var(--color-success-text);
+
+  --color-error-background: var(--color-error-background);
+  --color-error-text: var(--color-error-text);
+
+  --color-warning-background: var(--color-warning-background);
+  --color-warning-text: var(--color-warning-text);
+
+  --color-info-background: var(--color-info-background);
+  --color-info-text: var(--color-info-text);
+}
+
+.dark {
+  /* Dark mode colors */
+  --color-primary: var(--color-dark-primary);
+  --color-border: var(--color-dark-border);
+  --color-background: var(--color-dark-background);
+  --color-muted: var(--color-dark-muted);
+  --color-muted-foreground: var(--color-dark-muted-foreground);
+
+  /* Dark mode state colors */
+  --color-success-background: var(--color-dark-success-background);
+  --color-success-text: var(--color-dark-success-text);
+
+  --color-error-background: var(--color-dark-error-background);
+  --color-error-text: var(--color-dark-error-text);
+
+  --color-warning-background: var(--color-dark-warning-background);
+  --color-warning-text: var(--color-dark-warning-text);
+
+  --color-info-background: var(--color-dark-info-background);
+  --color-info-text: var(--color-dark-info-text);
+}

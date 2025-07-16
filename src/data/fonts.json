@@ -1,0 +1,5 @@
+[
+  { "id": "lato", "label": "Lato", "variable": "'Lato', sans-serif", "utility": "font-family-lato" },
+  { "id": "fira", "label": "Fira Sans", "variable": "'Fira Sans', sans-serif", "utility": "font-family-fira" },
+  { "id": "rubik", "label": "Rubik", "variable": "'Rubik', monospace", "utility": "font-family-rubik" }
+]
