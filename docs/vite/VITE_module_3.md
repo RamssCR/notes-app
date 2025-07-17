@@ -76,3 +76,26 @@ export default defineConfig(({ mode }) => {
   }
 })
 ```
+
+## You can use this on your code:
+```TS
+declare const __APP_VERSION__: string
+declare const __IS_STAGING__: boolean
+
+console.log("Version:", __APP_VERSION__)
+if (__IS_STAGING__) {
+  console.log("Staging mode")
+}
+```
+
+> This is sustituded at compiling time and it's not in `import.meta.env`
+
+## CI/CD failsafe
+```JSON
+"scripts": {
+  "check-env": "ts-node src/env.ts",
+  "build": "npm run check-env && vite build"
+}
+```
+
+> This prevents your pipeline from compiling with incorrect variables
