@@ -5,6 +5,8 @@ import { SettingButton } from './SettingButton'
 import { Settings } from '@components/settings/Settings'
 import { themeStore } from '@stores/themeStore'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { noteStore } from '@stores/noteStore'
 
 /**
  * Header component for the editor.
@@ -12,16 +14,21 @@ import { useState } from 'react'
  * It uses the SettingButton component for settings and light mode toggling.
  */
 export const Header = () => {
+  const { id } = useParams<{ id: string }>()
+  const { notes } = noteStore()
   const [active, setActive] = useState(false)
   const { theme, setTheme } = themeStore()
 
   const toggleModal = () => setActive(!active)
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
+  const note = notes.find(note => note.id === id)
 
   return (
     <header className="w-full flex flex-col items-start gap-3 lg:flex-row lg:gap-0 lg:items-center lg:justify-between">
-      <EditableTitle />
-      <section className="w-full justify-end lg:justify-start lg:w-fit flex items-center gap-3">
+      {id && (
+        <EditableTitle note={note} />
+      )}
+      <section className="ml-auto w-full justify-end lg:justify-start lg:w-fit flex items-center gap-3">
         <SettingButton
           Icon={SettingsIcon}
           label="Settings"
