@@ -5,8 +5,8 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        default: 'border-muted text-primary file:text-background file:bg-primary hover:file:bg-muted placeholder:text-gray-500/50',
-        transparent: 'border-transparent text-primary file:text-background file:bg-primary hover:file:bg-muted placeholder:text-gray-500/50',
+        default: 'border-muted text-primary file:text-background file:bg-primary hover:file:bg-muted placeholder:text-muted-foreground/60',
+        transparent: 'border-transparent text-primary file:text-background file:bg-primary hover:file:bg-muted placeholder:text-muted-foreground/60',
       },
       dimension: {
         sm: 'h-9 text-sm file:py-0.75',
