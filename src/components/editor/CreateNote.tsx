@@ -1,8 +1,15 @@
+import { 
+  type ChangeEventHandler, 
+  type MouseEventHandler,
+  useState, 
+} from 'react'
 import { Button } from '@components/ui/Button'
 import { Input } from '@components/ui/Input'
 import { Label } from '@components/ui/Label'
 import { Modal } from '@components/ui/Modal'
 import { Text } from '@components/ui/Text'
+import { InputError } from './InputError'
+import { noteStore } from '@stores/noteStore'
 
 type CreateNoteProps = {
   active?: boolean
@@ -14,9 +21,47 @@ type CreateNoteProps = {
  * This component is a placeholder for the note creation functionality.
  */
 export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
+  const [formData, setFormData] = useState({ title: '' })
+  const [error, setError] = useState('')
+  const { addNote } = noteStore()
+
+  const cleanUp = () => {
+    setFormData({ title: '' })
+    setError('')
+  }
+
+  // TODO: Implement a debounced function to handle note creation
+  // This will help in reducing the number of state updates and re-renders.
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target
+    setError('')
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+    if (!formData.title.trim()) {
+      setError('Title is required')
+      return
+    }
+
+    if (formData.title.length > 30) {
+      setError('Title must be less than 30 characters')
+      return
+    }
+
+    setError('')
+    addNote(formData.title)
+    onClose?.()
+  }
+
+  const handleClose = () => {
+    cleanUp()
+    onClose?.()
+  }
+
   return (
     <Modal
-      onClose={onClose}
+      onClose={handleClose}
       active={active}
       modalTitle="Create Note"
     >
@@ -28,13 +73,17 @@ export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
         <Input
           id="title"
           name="title"
-          placeholder="e.g. I fail chemistry, now I'm in serious trouble..."
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="e.g. I failed chemistry, now I'm in serious trouble..."
           className="border border-border"
         />
+        {error && <InputError error={error} />}
       </article>
       <Button
         className="px-6 mt-2"
         variant="primary"
+        onClick={handleClick}
       >
         Create Note
       </Button>
