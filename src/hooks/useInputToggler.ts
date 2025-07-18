@@ -7,8 +7,9 @@ import {
 } from "react"
 
 type UseInputToggler = {
+  readonly id: string
   initialTitle?: string
-  onUpdate?: (title: string) => void
+  onUpdate?: (id: string, { title }: { title: string }) => void
 }
 
 /**
@@ -16,7 +17,7 @@ type UseInputToggler = {
  * It allows toggling between editing and viewing modes,
  * handles input changes, and manages focus on the input field.
  */
-export const useInputToggler = ({ initialTitle = "New Note", onUpdate }: UseInputToggler) => {
+export const useInputToggler = ({ initialTitle = "New Note", id, onUpdate }: UseInputToggler) => {
   const [title, setTitle] = useState(initialTitle)
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -28,6 +29,11 @@ export const useInputToggler = ({ initialTitle = "New Note", onUpdate }: UseInpu
     }
   }, [isEditing])
 
+  useEffect(() => {
+    setTitle(initialTitle)
+    setIsEditing(false)
+  }, [initialTitle])
+
   /**
    * Handles the blur or submit action for the input field.
    * It sets the editing state to false and calls the onUpdate callback with the current title.
@@ -37,7 +43,7 @@ export const useInputToggler = ({ initialTitle = "New Note", onUpdate }: UseInpu
 
     setTitle(value)
     setIsEditing(false)
-    onUpdate?.(value)
+    onUpdate?.(id, { title: value })
   }
 
   /**
