@@ -11,9 +11,9 @@
 - Differences between `import.meta.env` and `process.env` ✅
 
 ## Module 3: Advance Environment Variables Handling
-- Multiple custom environments (`staging`, `qa`, `beta`, etc)
-- Loading variables dynamically regarding the environment with `defineConfig`
-- Environment Variables' validation and typing.
+- Multiple custom environments (`staging`, `qa`, `beta`, etc) ✅ 
+- Loading variables dynamically regarding the environment with `defineConfig` ✅
+- Environment Variables' validation and typing. ✅
 
 ## Module 4: `vite.config.ts` thoroughly
 - Complete `defineConfig` structure
@@ -29,9 +29,9 @@
 - `preload`, `prefetch`, `dynamic import()`
 
 ## Module 6: Sourcemaps and Debugging
-- Activate sourcemaps for production
-- Code mapping and legible errors in production
-- Integration with Sentry, Bugsnag or TrackJS
+- Activate sourcemaps for production ✅
+- Code mapping and legible errors in production 🔃
+- Integration with Sentry, Bugsnag or TrackJS 🔜
 
 ## Module 7: Useful Vite plugins for React
 - `@vitejs/plugin-react` and its options (JSX, fast refresh, etc)

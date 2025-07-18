@@ -78,6 +78,7 @@ export default defineConfig(({ mode }) => {
 ```
 
 ## You can use this on your code:
+`src/vite-env.d.ts`
 ```TS
 declare const __APP_VERSION__: string
 declare const __IS_STAGING__: boolean
@@ -90,7 +91,9 @@ if (__IS_STAGING__) {
 
 > This is sustituded at compiling time and it's not in `import.meta.env`
 
-## CI/CD failsafe
+## CI/CD failsafe (validate before build)
+You can add a validation script before building:
+
 ```JSON
 "scripts": {
   "check-env": "ts-node src/env.ts",

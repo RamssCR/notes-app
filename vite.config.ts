@@ -1,18 +1,25 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
 import paths from 'vite-tsconfig-paths'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 /// <reference types="vitest/config" />
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production';
+  const env = loadEnv(mode, process.cwd(), '')
 
   return {
+    define: {
+      __APP_VERSION__: JSON.stringify(env.VITE_VERSION || 'development'),
+      __IS_STAGING__: JSON.stringify(mode === 'staging'),
+    },
     plugins: [
       react(),
       tailwindcss(),
       paths(),
+      visualizer({ open: true }),
     ],
     build: {
       target: 'esnext',
