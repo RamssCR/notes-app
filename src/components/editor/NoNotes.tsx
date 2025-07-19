@@ -1,9 +1,9 @@
 import { Button } from "@components/ui/Button";
+import { CreateNote } from "./CreateNote";
 import { Text } from "@components/ui/Text";
 import { Title } from "@components/ui/Title";
 import { NotepadText, Plus } from "lucide-react";
 import { useState } from "react";
-import { CreateNote } from "./CreateNote";
 
 /**
  * Displays a message when there are no notes available.
@@ -15,7 +15,7 @@ export const NoNotes = () => {
 
   return (
     <article
-      className="w-full h-[73svh] flex flex-col items-center justify-center gap-1 lg:h-full"
+      className="w-full h-[83svh] flex flex-col items-center justify-center gap-1 lg:h-full"
       aria-labelledby="no-notes-title"
       aria-describedby="no-notes-description"
       role="region"

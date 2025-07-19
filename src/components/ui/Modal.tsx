@@ -24,11 +24,7 @@ export const Modal = ({
   onClose?: () => void
 }
 ) => {
-  const [isVisible, setIsVisible] = useState(active)
-
-  useEffect(() => {
-    if (active) setIsVisible(true)
-  }, [active])
+  const [_, setIsVisible] = useState(active)
 
   useEffect(() => {
     if (!active) return
@@ -36,8 +32,6 @@ export const Modal = ({
     document.addEventListener("keydown", handleEsc)
     return () => document.removeEventListener("keydown", handleEsc)
   }, [onClose, active])
-
-  if (typeof window === "undefined" || !isVisible) return null
 
   return (
     <AnimatePresence

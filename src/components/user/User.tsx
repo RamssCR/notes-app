@@ -1,16 +1,21 @@
 import { Avatar } from "@components/ui/Avatar"
 import { Title } from "@components/ui/Title"
 
+type UserProps = {
+  username?: string
+  fallback?: string
+}
+
 /**
  * User component displays user information including avatar and name.
  */
-export const User = () => (
+export const User = ({ username = "RamssCR", fallback = "RC" }: UserProps) => (
   <article className="flex items-center gap-2">
     <Avatar
-      src="https://github.com/RamssCR.png"
-      alt="RamssCR"
-      fallbackText="RC"
+      src={`https://github.com/${username}.png`}
+      alt={username}
+      fallbackText={fallback}
     />
-    <Title as="h2">RamssCR</Title>
+    <Title as="h2">{username}</Title>
   </article>
 )

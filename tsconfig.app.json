@@ -24,6 +24,7 @@
     "noUncheckedSideEffectImports": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "allowUnusedLabels": true,
 
     /* Paths */
     "baseUrl": ".",

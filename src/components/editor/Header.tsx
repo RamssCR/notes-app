@@ -1,8 +1,9 @@
-import { Moon, Settings as SettingsIcon, Sun } from 'lucide-react'
+import { List, Moon, Settings as SettingsIcon, Sun } from 'lucide-react'
 import { EditableTitle } from './EditableTitle'
-import { User } from "@components/user/User"
+import { MobileSidebar } from '@components/sidebar/MobileSidebar'
 import { SettingButton } from './SettingButton'
 import { Settings } from '@components/settings/Settings'
+import { User } from "@components/user/User"
 import { themeStore } from '@stores/themeStore'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -16,10 +17,12 @@ import { noteStore } from '@stores/noteStore'
 export const Header = () => {
   const { id } = useParams<{ id: string }>()
   const { notes } = noteStore()
-  const [active, setActive] = useState(false)
+  const [settingsActive, setSettingsActive] = useState(false)
+  const [notesActive, setNotesActive] = useState(false)
   const { theme, setTheme } = themeStore()
 
-  const toggleModal = () => setActive(!active)
+  const toggleNotes = () => setNotesActive(!notesActive)
+  const toggleModal = () => setSettingsActive(!settingsActive)
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const note = notes.find(note => note.id === id)
 
@@ -29,6 +32,13 @@ export const Header = () => {
         <EditableTitle note={note} />
       )}
       <section className="ml-auto w-full justify-end lg:justify-start lg:w-fit flex items-center gap-3">
+        <SettingButton
+          Icon={List}
+          label="Notes"
+          title="Notes"
+          onClick={toggleNotes}
+          className="lg:hidden rounded-full"
+        />
         <SettingButton
           Icon={SettingsIcon}
           label="Settings"
@@ -43,7 +53,8 @@ export const Header = () => {
         />
         <User />
       </section>
-      <Settings active={active} onClose={toggleModal} />
+      <Settings active={settingsActive} onClose={toggleModal} />
+      <MobileSidebar active={notesActive} toggle={toggleNotes} />
     </header>
   )
 }
