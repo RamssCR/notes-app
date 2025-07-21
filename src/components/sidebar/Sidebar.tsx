@@ -1,11 +1,12 @@
+import { useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { CreateNote } from "@components/editor/CreateNote"
 import { CreateNote as CreateNoteButton } from "./CreateNote"
+import { DeleteNote } from "@components/editor/DeleteNote"
 import { Note } from "./Note"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
-import { useState } from "react"
 import { noteStore } from "@stores/noteStore"
-import { useParams } from "react-router-dom"
 
 /**
  * Sidebar component for the notes application.
@@ -14,7 +15,16 @@ export const Sidebar = () => {
   const { id } = useParams<{ id: string }>()
   const { notes } = noteStore()
   const [active, setActive] = useState(false)
+  const [deleteActive, setDeleteActive] = useState(false)
   const toggle = () => setActive(!active)
+  const toggleDelete = () => setDeleteActive(!deleteActive)
+  const navigateTo = useNavigate()
+
+  useEffect(() => {
+    if (!id) {
+      navigateTo('/')
+    }
+  }, [id, navigateTo])
 
   return (
     <aside className="hidden bg-muted w-full h-[100svh] lg:col-span-1 xl:col-span-1 lg:flex flex-col items-start border-r border-border">
@@ -39,6 +49,7 @@ export const Sidebar = () => {
                 id={note.id}
                 title={note.title}
                 active={id === note.id}
+                onDelete={toggleDelete}
               />
             ))}
           </article>
@@ -52,6 +63,11 @@ export const Sidebar = () => {
       <CreateNote
         active={active}
         onClose={toggle}
+      />
+      <DeleteNote
+        id={id!}
+        active={deleteActive}
+        onClose={toggleDelete}
       />
     </aside>
   )

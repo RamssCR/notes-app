@@ -51,6 +51,7 @@ export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
 
     setError('')
     addNote(formData.title)
+    cleanUp()
     onClose?.()
   }
 

@@ -1,12 +1,13 @@
+import { useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { CreateNote } from "@components/editor/CreateNote"
 import { CreateNote as CreateNoteButton } from "./CreateNote"
+import { DeleteNote } from "@components/editor/DeleteNote"
 import { Note } from "./Note"
 import { Sheet } from "@components/ui/Sheet"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
 import { noteStore } from "@stores/noteStore"
-import { useParams } from "react-router-dom"
-import { useState } from "react"
 
 type MobileSidebarProps = {
   active: boolean
@@ -17,7 +18,16 @@ export const MobileSidebar = ({ active, toggle }: MobileSidebarProps) => {
   const { id } = useParams<{ id: string }>()
   const { notes } = noteStore()
   const [noteActive, setNoteActive] = useState(false)
+  const [deleteActive, setDeleteActive] = useState(false)
+  const toggleDelete = () => setDeleteActive(!deleteActive)
   const toggleNoteCreator = () => setNoteActive(!noteActive)
+  const navigateTo = useNavigate()
+
+  useEffect(() => {
+    if (!id) {
+      navigateTo('/')
+    }
+  }, [id, navigateTo])
 
   return (
     <Sheet
@@ -48,6 +58,7 @@ export const MobileSidebar = ({ active, toggle }: MobileSidebarProps) => {
                     title={note.title}
                     active={id === note.id}
                     onClick={toggle}
+                    onDelete={toggleDelete}
                   />
                 ))}
             </article>
@@ -61,6 +72,11 @@ export const MobileSidebar = ({ active, toggle }: MobileSidebarProps) => {
         <CreateNote
           active={noteActive}
           onClose={toggleNoteCreator}
+        />
+        <DeleteNote
+          id={id!}
+          active={deleteActive}
+          onClose={toggleDelete}
         />
       </aside>
     </Sheet>

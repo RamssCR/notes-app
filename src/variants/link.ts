@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 export const variants = cva(
-  'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-colors',
+  'focus:outline-none focus-visible:bg-gray-200 dark:focus-visible:bg-[#2c2b2b] transition-colors',
   {
     variants: {
       variant: {

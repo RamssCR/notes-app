@@ -6,6 +6,7 @@ type NoteStore = {
   notes: NoteProps[]
   addNote: (title: string) => void
   updateNote: (id: string, updatedNote: Partial<NoteProps>) => void
+  deleteNote: (id: string) => void
 }
 
 export const noteStore = create<NoteStore>()(
@@ -32,6 +33,10 @@ export const noteStore = create<NoteStore>()(
               ? { ...note, ...updatedNote, updatedAt: new Date() }
               : note
           ),
+        })),
+      deleteNote: (id) =>
+        set((state) => ({
+          notes: state.notes.filter((note) => note.id !== id),
         })),
     }),
     {

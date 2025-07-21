@@ -3,6 +3,7 @@ import { Input } from '@components/ui/Input'
 import { Title } from '@components/ui/Title'
 import { useInputToggler } from '@hooks/useInputToggler'
 import { noteStore } from '@stores/noteStore'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 /**
@@ -27,10 +28,13 @@ export const EditableTitle = ({ note }: { note?: NoteProps }) => {
     onUpdate: updateNote as unknown as (id: string, { title }: { title: string }) => void,
   })
 
-  if (!note) {
-    navigateTo('/')
-    return null
-  }
+  useEffect(() => {
+    if (!note) {
+      navigateTo('/')
+    }
+  }, [note, navigateTo])
+
+  if (!note) return null
 
   return (
     <div className="w-full flex items-center gap-3">
