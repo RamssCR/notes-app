@@ -13,6 +13,7 @@
   --color-background: oklch(97.015% 0.00011 271.152);
   --color-muted: oklch(95.476% 0.00588 264.661);
   --color-muted-foreground: oklch(43.413% 0.00393 16.618);
+  --color-ghost: oklch(100% 0.00001 271.152);
 
   /* Commons */
   --color-success-background: oklch(95.396% 0.01981 155.18);
@@ -33,6 +34,7 @@
   --color-dark-background: oklch(26.862% 0.00003 271.152);
   --color-dark-muted: oklch(21.455% 0.00156 16.419);
   --color-dark-muted-foreground: oklch(76.838% 0.00225 15.067);
+  --color-ghost-dark: oklch(0% 0.00001 271.152);
 
   /* State colors for dark mode */
   --color-dark-success-background: oklch(33.119% 0.05298 159.767);
@@ -62,6 +64,7 @@
   --color-background: var(--color-background);
   --color-muted: var(--color-muted);
   --color-muted-foreground: var(--color-muted-foreground);
+  --color-ghost: var(--color-ghost);
 
   /* State colors */
   --color-success-background: var(--color-success-background);
@@ -84,6 +87,7 @@
   --color-background: var(--color-dark-background);
   --color-muted: var(--color-dark-muted);
   --color-muted-foreground: var(--color-dark-muted-foreground);
+  --color-ghost: var(--color-ghost-dark);
 
   /* Dark mode state colors */
   --color-success-background: var(--color-dark-success-background);

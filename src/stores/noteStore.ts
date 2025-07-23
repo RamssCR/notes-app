@@ -2,11 +2,12 @@ import type { NoteProps } from '@@types/note'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-type NoteStore = {
+export type NoteStore = {
   notes: NoteProps[]
   addNote: (title: string) => void
   updateNote: (id: string, updatedNote: Partial<NoteProps>) => void
   deleteNote: (id: string) => void
+  getNoteById?: (id: string) => (state: NoteStore) => NoteProps | undefined
 }
 
 export const noteStore = create<NoteStore>()(
@@ -38,6 +39,9 @@ export const noteStore = create<NoteStore>()(
         set((state) => ({
           notes: state.notes.filter((note) => note.id !== id),
         })),
+      getNoteById: (id) =>
+        (state: NoteStore) => state.notes.find((note) => note.id === id),
+      getNotes: () => (state: NoteStore) => state.notes,
     }),
     {
       name: 'note-storage',
