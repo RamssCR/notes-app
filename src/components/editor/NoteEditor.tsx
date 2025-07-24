@@ -44,7 +44,7 @@ export const NoteEditor = ({ updateNote, value, id, ...props }: NoteEditorProps)
     <Textarea 
       ref={textareaRef}
       name="content"
-      className="mt-6"
+      className="mt-6 max-h-[73svh] overflow-y-auto lg:max-h-[85svh]"
       dimension="lg"
       spellCheck="false"
       placeholder="Start writing your note..."

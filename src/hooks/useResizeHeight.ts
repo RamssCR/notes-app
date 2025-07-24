@@ -9,7 +9,11 @@ export const useResizeHeight = (ref: RefObject<HTMLTextAreaElement | null>, valu
     const textarea = ref.current
     if (!textarea) return
 
+
     textarea.style.height = "auto"
     textarea.style.height = `${textarea.scrollHeight}px`
+    setTimeout(() => {
+      textarea.scrollTop = textarea.scrollHeight
+    }, 0)
   }, [value, ref])
 }
