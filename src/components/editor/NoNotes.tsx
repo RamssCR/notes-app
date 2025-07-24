@@ -1,17 +1,16 @@
-import { Button } from "@components/ui/Button";
-import { CreateNote } from "./CreateNote";
-import { Text } from "@components/ui/Text";
-import { Title } from "@components/ui/Title";
-import { NotepadText, Plus } from "lucide-react";
-import { useState } from "react";
+import { NotepadText, Plus } from "lucide-react"
+import { Button } from "@components/ui/Button"
+import { CreateNote } from "./CreateNote"
+import { Text } from "@components/ui/Text"
+import { Title } from "@components/ui/Title"
+import { useToggle } from "@hooks/useToggle"
 
 /**
  * Displays a message when there are no notes available.
  * This component encourages users to create their first note.
  */
 export const NoNotes = () => {
-  const [active, setActive] = useState(false)
-  const toggle = () => setActive(!active)
+  const { active, toggle } = useToggle()
 
   return (
     <article

@@ -12,6 +12,12 @@ type SwitchProps = SwitchVariants & {
   className?: string
 }
 
+/**
+ * Component that renders a switch input.
+ * It allows toggling between two states (checked/unchecked).
+ * It accepts props for checked state, change handler, variant, 
+ * size, and additional class names.
+ */
 export const Switch = ({ 
   checked = false, 
   onChange, 

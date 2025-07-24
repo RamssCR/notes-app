@@ -6,6 +6,11 @@ type TitleProps = HTMLAttributes<HTMLHeadingElement> & TitleVariantsProps & {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
+/**
+ * Title component for displaying headings with customizable styles.
+ * It supports different HTML heading tags (h1, h2, etc.) and applies 
+ * styles based on the provided variants.
+ */
 export const Title = ({
   children,
   as: Tag = "h1",

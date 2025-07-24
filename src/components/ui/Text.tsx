@@ -1,8 +1,5 @@
+import { type TextVariants, variants } from '@variants/text'
 import type { HTMLAttributes } from 'react'
-import {
-  type TextVariants,
-  variants,
-} from '@variants/text'
 import { classMerger } from '@utils/classMerger'
 
 type TextProps = HTMLAttributes<HTMLParagraphElement> & TextVariants

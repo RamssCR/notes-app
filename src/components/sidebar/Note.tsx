@@ -24,6 +24,8 @@ export const Note = ({
   onDelete,
   ...props 
 }: NoteComponentProps) => {
+  const trimmedTitle = title.trim() === '' ? 'Untitled note' : title
+
   return (
     <Link
       to={`/${id}`}
@@ -53,7 +55,7 @@ export const Note = ({
           <Trash2 className="size-4 hover:text-red-500" aria-hidden="true" />
         </Button>
       )}
-      <span className="sr-only">Open note {title}</span>
+      <span className="sr-only">Open note {trimmedTitle}</span>
     </Link>
   )
 }

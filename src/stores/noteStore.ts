@@ -4,29 +4,32 @@ import { persist } from 'zustand/middleware'
 
 export type NoteStore = {
   notes: NoteProps[]
-  addNote: (title: string) => void
+  addNote: (title: string) => string
   updateNote: (id: string, updatedNote: Partial<NoteProps>) => void
   deleteNote: (id: string) => void
-  getNoteById?: (id: string) => (state: NoteStore) => NoteProps | undefined
+  getNoteById: (id: string) => (state: NoteStore) => NoteProps | undefined
 }
 
 export const noteStore = create<NoteStore>()(
   persist(
     (set) => ({
       notes: [],
-      addNote: (title) =>
+      addNote: (title) => {
+        const id = crypto.randomUUID()
         set((state) => ({
           notes: [
             ...state.notes,
             {
               title,
-              id: crypto.randomUUID(),
+              id,
               content: '',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
           ],
-        })),
+        }))
+        return id
+      },
       updateNote: (id, updatedNote) =>
         set((state) => ({
           notes: state.notes.map((note) =>

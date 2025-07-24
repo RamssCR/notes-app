@@ -1,30 +1,24 @@
-import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
 import { CreateNote } from "@components/editor/CreateNote"
 import { CreateNote as CreateNoteButton } from "./CreateNote"
 import { DeleteNote } from "@components/editor/DeleteNote"
 import { Note } from "./Note"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
-import { noteStore } from "@stores/noteStore"
+import { sortNotes } from "@utils/sortNotes"
+import { useSidebarToggle } from "@hooks/useSidebarToggle"
 
 /**
  * Sidebar component for the notes application.
  */
 export const Sidebar = () => {
-  const { id } = useParams<{ id: string }>()
-  const { notes } = noteStore()
-  const [active, setActive] = useState(false)
-  const [deleteActive, setDeleteActive] = useState(false)
-  const toggle = () => setActive(!active)
-  const toggleDelete = () => setDeleteActive(!deleteActive)
-  const navigateTo = useNavigate()
-
-  useEffect(() => {
-    if (!id) {
-      navigateTo('/')
-    }
-  }, [id, navigateTo])
+  const {
+    noteActive,
+    deleteActive,
+    toggleDelete,
+    toggleNoteCreator,
+    notes,
+    id,
+  } = useSidebarToggle()
 
   return (
     <aside className="hidden bg-muted w-full h-[100svh] lg:col-span-1 xl:col-span-1 lg:flex flex-col items-start border-r border-border">
@@ -40,9 +34,7 @@ export const Sidebar = () => {
             Your notes
           </Text>
           <article className="w-full flex flex-col items-start gap-0.5 overflow-y-auto">
-            {notes
-              .slice()
-              .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+            {sortNotes(notes)
               .map(note => (
               <Note
                 key={note.id}
@@ -57,12 +49,12 @@ export const Sidebar = () => {
       </section>
       <CreateNoteButton 
         className="mt-auto" 
-        onClick={toggle}
+        onClick={toggleNoteCreator}
         aria-label="Create Note"
       />
       <CreateNote
-        active={active}
-        onClose={toggle}
+        active={noteActive}
+        onClose={toggleNoteCreator}
       />
       <DeleteNote
         id={id!}

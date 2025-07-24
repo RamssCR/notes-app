@@ -1,13 +1,15 @@
-import { List, Moon, Settings as SettingsIcon, Sun } from 'lucide-react'
+import { 
+  List, 
+  Moon, 
+  Settings as SettingsIcon, 
+  Sun 
+} from 'lucide-react'
 import { EditableTitle } from './EditableTitle'
 import { MobileSidebar } from '@components/sidebar/MobileSidebar'
 import { SettingButton } from './SettingButton'
 import { Settings } from '@components/settings/Settings'
 import { User } from "@components/user/User"
-import { themeStore } from '@stores/themeStore'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { noteStore } from '@stores/noteStore'
+import { useHeader } from '@hooks/useHeader'
 
 /**
  * Header component for the editor.
@@ -15,16 +17,16 @@ import { noteStore } from '@stores/noteStore'
  * It uses the SettingButton component for settings and light mode toggling.
  */
 export const Header = () => {
-  const { id } = useParams<{ id: string }>()
-  const { notes } = noteStore()
-  const [settingsActive, setSettingsActive] = useState(false)
-  const [notesActive, setNotesActive] = useState(false)
-  const { theme, setTheme } = themeStore()
-
-  const toggleNotes = () => setNotesActive(!notesActive)
-  const toggleModal = () => setSettingsActive(!settingsActive)
-  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
-  const note = notes.find(note => note.id === id)
+  const {
+    toggleModal,
+    toggleNotes,
+    toggleTheme,
+    settingsActive,
+    notesActive,
+    theme,
+    note,
+    id
+  } = useHeader()
 
   return (
     <header className="w-full flex flex-col items-start gap-3 lg:flex-row lg:gap-0 lg:items-center lg:justify-between">

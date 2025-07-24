@@ -3,11 +3,17 @@ import {
   AnimatePresence,
   motion
 } from 'motion/react'
-import { useEffect, useState } from 'react'
 import { Button } from '@components/ui/Button'
 import { X } from 'lucide-react'
 import { classMerger } from '@utils/classMerger'
+import { useEffect } from 'react'
+import { useToggle } from '@hooks/useToggle'
 
+/**
+ * Sheet component for displaying a sliding panel.
+ * It supports animations and can be closed with an escape key.
+ * It accepts children to render inside the panel and has customizable styles.
+ */
 export const Sheet = ({
   className,
   cardClassName,
@@ -20,7 +26,7 @@ export const Sheet = ({
   active?: boolean
   onClose: () => void
 }) => {
-  const [_, setIsVisible] = useState(false)
+  const { off } = useToggle(active)
 
   useEffect(() => {
     if (!active) return
@@ -31,7 +37,7 @@ export const Sheet = ({
 
   return (
     <AnimatePresence
-      onExitComplete={() => setIsVisible(false)}
+      onExitComplete={off}
       mode="wait"
     >
       {active && (

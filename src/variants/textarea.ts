@@ -10,7 +10,7 @@ export const textarea = cva(
       dimension: {
         sm: 'min-h-[4em]',
         md: 'min-h-[6em]',
-        lg: 'min-h-[8em]',
+        lg: 'min-h-[12em]',
         full: 'min-h-[screen]'
       }
     },

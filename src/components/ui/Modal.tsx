@@ -1,9 +1,14 @@
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, type HTMLMotionProps } from 'motion/react'
+import { useEffect } from 'react'
+import { 
+  AnimatePresence, 
+  type HTMLMotionProps,
+  motion 
+} from 'motion/react'
 import { Button } from './Button'
 import { Title } from './Title'
 import { X } from 'lucide-react'
 import { classMerger } from '@utils/classMerger'
+import { useToggle } from '@hooks/useToggle'
 
 /**
  * Modal component that displays a centered modal dialog with a backdrop.
@@ -24,7 +29,7 @@ export const Modal = ({
   onClose?: () => void
 }
 ) => {
-  const [_, setIsVisible] = useState(active)
+  const { off } = useToggle(active)
 
   useEffect(() => {
     if (!active) return
@@ -35,7 +40,7 @@ export const Modal = ({
 
   return (
     <AnimatePresence
-      onExitComplete={() => setIsVisible(false)}
+      onExitComplete={off}
       mode="wait"
     >
       {active && (

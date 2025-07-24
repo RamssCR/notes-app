@@ -10,6 +10,10 @@ type NoteComponentProps = {
   onClose: () => void
 }
 
+/**
+ * Component that displays a modal for deleting a note.
+ * It confirms the deletion and provides options to proceed or cancel.
+ */
 export const DeleteNote = ({ id, active = false, onClose }: NoteComponentProps) => {
   const { deleteNote } = noteStore()
   const navigate = useNavigate()

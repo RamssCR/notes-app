@@ -1,5 +1,3 @@
-import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
 import { CreateNote } from "@components/editor/CreateNote"
 import { CreateNote as CreateNoteButton } from "./CreateNote"
 import { DeleteNote } from "@components/editor/DeleteNote"
@@ -7,27 +5,28 @@ import { Note } from "./Note"
 import { Sheet } from "@components/ui/Sheet"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
-import { noteStore } from "@stores/noteStore"
+import { sortNotes } from "@utils/sortNotes"
+import { useSidebarToggle } from "@hooks/useSidebarToggle"
 
 type MobileSidebarProps = {
   active: boolean
   toggle: () => void
 }
 
+/**
+ * Mobile sidebar component for managing notes.
+ * This component provides a sidebar that allows users to view, create, and delete notes on mobile devices.
+ * It includes a list of notes, a button to create new notes, and a delete confirmation dialog.
+ */
 export const MobileSidebar = ({ active, toggle }: MobileSidebarProps) => {
-  const { id } = useParams<{ id: string }>()
-  const { notes } = noteStore()
-  const [noteActive, setNoteActive] = useState(false)
-  const [deleteActive, setDeleteActive] = useState(false)
-  const toggleDelete = () => setDeleteActive(!deleteActive)
-  const toggleNoteCreator = () => setNoteActive(!noteActive)
-  const navigateTo = useNavigate()
-
-  useEffect(() => {
-    if (!id) {
-      navigateTo('/')
-    }
-  }, [id, navigateTo])
+  const {
+    noteActive,
+    deleteActive,
+    toggleDelete,
+    toggleNoteCreator,
+    notes,
+    id,
+  } = useSidebarToggle()
 
   return (
     <Sheet
@@ -48,9 +47,7 @@ export const MobileSidebar = ({ active, toggle }: MobileSidebarProps) => {
               Your notes
             </Text>
             <article className="w-full flex flex-col items-start gap-0.5 overflow-y-auto">
-              {notes
-                .slice()
-                .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+              {sortNotes(notes)
                 .map(note => (
                   <Note
                     key={note.id}

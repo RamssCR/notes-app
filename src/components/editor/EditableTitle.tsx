@@ -1,9 +1,9 @@
 import type { NoteProps } from '@@types/note'
 import { Input } from '@components/ui/Input'
 import { Title } from '@components/ui/Title'
-import { useInputToggler } from '@hooks/useInputToggler'
 import { noteStore } from '@stores/noteStore'
 import { useEffect } from 'react'
+import { useInputToggler } from '@hooks/useInputToggler'
 import { useNavigate } from 'react-router-dom'
 
 /**
@@ -25,7 +25,7 @@ export const EditableTitle = ({ note }: { note?: NoteProps }) => {
   } = useInputToggler({ 
     initialTitle: note?.title,
     id: note?.id || '',
-    onUpdate: updateNote as unknown as (id: string, { title }: { title: string }) => void,
+    onUpdate: updateNote,
   })
 
   useEffect(() => {
@@ -45,6 +45,7 @@ export const EditableTitle = ({ note }: { note?: NoteProps }) => {
           onChange={handleInput}
           onBlur={handleBlurOrSubmit}
           onKeyDown={handleTrigger}
+          maxLength={30}
           className="flex-1/2"
           variant="transparent"
         />

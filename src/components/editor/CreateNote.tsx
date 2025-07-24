@@ -1,19 +1,16 @@
-import { 
-  type ChangeEventHandler, 
-  type MouseEventHandler,
-  useState, 
-} from 'react'
+import type { ChangeEventHandler } from 'react'
 import { Button } from '@components/ui/Button'
 import { Input } from '@components/ui/Input'
+import { InputError } from './InputError'
 import { Label } from '@components/ui/Label'
 import { Modal } from '@components/ui/Modal'
 import { Text } from '@components/ui/Text'
-import { InputError } from './InputError'
-import { noteStore } from '@stores/noteStore'
+import { useCreateNoteHandler } from '@hooks/useCreateNoteHandler'
+import { useNavigate } from 'react-router-dom'
 
 type CreateNoteProps = {
   active?: boolean
-  onClose?: () => void
+  onClose: () => void
 }
 
 /**
@@ -21,43 +18,28 @@ type CreateNoteProps = {
  * This component is a placeholder for the note creation functionality.
  */
 export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
-  const [formData, setFormData] = useState({ title: '' })
-  const [error, setError] = useState('')
-  const { addNote } = noteStore()
+  const {
+    formData,
+    error,
+    handleChange,
+    handleSubmit,
+    cleanUp,
+  } = useCreateNoteHandler({ onClose })
+  const navigateTo = useNavigate()
 
-  const cleanUp = () => {
-    setFormData({ title: '' })
-    setError('')
-  }
-
-  // TODO: Implement a debounced function to handle note creation
-  // This will help in reducing the number of state updates and re-renders.
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target
-    setError('')
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!formData.title.trim()) {
-      setError('Title is required')
-      return
-    }
-
-    if (formData.title.length > 30) {
-      setError('Title must be less than 30 characters')
-      return
-    }
-
-    setError('')
-    addNote(formData.title)
-    cleanUp()
-    onClose?.()
+    handleChange(name, value)
   }
 
   const handleClose = () => {
     cleanUp()
-    onClose?.()
+    onClose()
+  }
+
+  const handleCreateNote = () => {
+    const id = handleSubmit()
+    if (id) navigateTo(`/${id}`)
   }
 
   return (
@@ -75,7 +57,7 @@ export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
           id="title"
           name="title"
           value={formData.title}
-          onChange={handleChange}
+          onChange={handleInput}
           placeholder="e.g. I failed chemistry, now I'm in serious trouble..."
           className="border border-border"
         />
@@ -84,7 +66,7 @@ export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
       <Button
         className="px-6 mt-2"
         variant="primary"
-        onClick={handleClick}
+        onClick={handleCreateNote}
       >
         Create Note
       </Button>
