@@ -13,7 +13,7 @@ type SettingsProps = {
  * Settings component for managing user preferences.
  * It allows users to change the theme, select typography, and export notes.
  */
-export const Settings = ({ active = true, onClose }: SettingsProps) => {
+const Settings = ({ active = true, onClose }: SettingsProps) => {
   return (
     <Modal
       onClose={onClose}
@@ -31,3 +31,6 @@ export const Settings = ({ active = true, onClose }: SettingsProps) => {
     </Modal>
   )
 }
+
+// Exporting as default for code splitting
+export default Settings

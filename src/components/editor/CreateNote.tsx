@@ -17,7 +17,7 @@ type CreateNoteProps = {
  * Display a modal for creating a new note.
  * This component is a placeholder for the note creation functionality.
  */
-export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
+const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
   const {
     formData,
     error,
@@ -73,3 +73,6 @@ export const CreateNote = ({ active = false, onClose }: CreateNoteProps) => {
     </Modal>
   )
 }
+
+// Exporting as default for code splitting purposes
+export default CreateNote

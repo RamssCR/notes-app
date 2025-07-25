@@ -1,9 +1,12 @@
 import { NotepadText, Plus } from "lucide-react"
+import { Suspense, lazy } from "react"
 import { Button } from "@components/ui/Button"
-import { CreateNote } from "./CreateNote"
+import { Loader } from "@components/ui/Loader"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
 import { useToggle } from "@hooks/useToggle"
+
+const CreateNote = lazy(() => import("./CreateNote"))
 
 /**
  * Displays a message when there are no notes available.
@@ -34,18 +37,20 @@ export const NoNotes = () => {
       >
         Don't be shy, we don't judge. Create your first note!
       </Text>
-      <Button 
-        className="flex items-center gap-2 mt-5 font-medium" 
+      <Button
+        className="flex items-center gap-2 mt-5 font-medium"
         variant="primary"
         onClick={toggle}
       >
         <Plus className="size-4" />
         Create Note
       </Button>
-      <CreateNote
-        active={active}
-        onClose={toggle}
-      />
+      <Suspense fallback={<Loader />}>
+        <CreateNote
+          active={active}
+          onClose={toggle}
+        />
+      </Suspense>
     </article>
   )
 }

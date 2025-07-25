@@ -1,11 +1,14 @@
-import { CreateNote } from "@components/editor/CreateNote"
+import { Suspense, lazy } from "react"
 import { CreateNote as CreateNoteButton } from "./CreateNote"
-import { DeleteNote } from "@components/editor/DeleteNote"
+import { Loader } from "@components/ui/Loader"
 import { Note } from "./Note"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
 import { sortNotes } from "@utils/sortNotes"
 import { useSidebarToggle } from "@hooks/useSidebarToggle"
+
+const CreateNote = lazy(() => import("@components/editor/CreateNote"))
+const DeleteNote = lazy(() => import("@components/editor/DeleteNote"))
 
 /**
  * Sidebar component for the notes application.
@@ -36,31 +39,35 @@ export const Sidebar = () => {
           <article className="w-full flex flex-col items-start gap-0.5 overflow-y-auto">
             {sortNotes(notes)
               .map(note => (
-              <Note
-                key={note.id}
-                id={note.id}
-                title={note.title}
-                active={id === note.id}
-                onDelete={toggleDelete}
-              />
-            ))}
+                <Note
+                  key={note.id}
+                  id={note.id}
+                  title={note.title}
+                  active={id === note.id}
+                  onDelete={toggleDelete}
+                />
+              ))}
           </article>
         </section>
       </section>
-      <CreateNoteButton 
-        className="mt-auto" 
+      <CreateNoteButton
+        className="mt-auto"
         onClick={toggleNoteCreator}
         aria-label="Create Note"
       />
-      <CreateNote
-        active={noteActive}
-        onClose={toggleNoteCreator}
-      />
-      <DeleteNote
-        id={id!}
-        active={deleteActive}
-        onClose={toggleDelete}
-      />
+      <Suspense fallback={<Loader />}>
+        <CreateNote
+          active={noteActive}
+          onClose={toggleNoteCreator}
+        />
+      </Suspense>
+      <Suspense fallback={<Loader />}>
+        <DeleteNote
+          id={id!}
+          active={deleteActive}
+          onClose={toggleDelete}
+        />
+      </Suspense>
     </aside>
   )
 }

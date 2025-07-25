@@ -4,12 +4,15 @@ import {
   Settings as SettingsIcon, 
   Sun 
 } from 'lucide-react'
+import { Suspense, lazy } from 'react'
 import { EditableTitle } from './EditableTitle'
+import { Loader } from '@components/ui/Loader'
 import { MobileSidebar } from '@components/sidebar/MobileSidebar'
 import { SettingButton } from './SettingButton'
-import { Settings } from '@components/settings/Settings'
 import { User } from "@components/user/User"
-import { useHeader } from '@hooks/useHeader'
+import { useHeader } from "@hooks/useHeader"
+
+const Settings = lazy(() => import('@components/settings/Settings'))
 
 /**
  * Header component for the editor.
@@ -55,8 +58,13 @@ export const Header = () => {
         />
         <User />
       </section>
-      <Settings active={settingsActive} onClose={toggleModal} />
-      <MobileSidebar active={notesActive} toggle={toggleNotes} />
+      <Suspense fallback={<Loader />}>
+        <Settings active={settingsActive} onClose={toggleModal} />
+      </Suspense>
+      <MobileSidebar 
+        active={notesActive} 
+        toggle={toggleNotes} 
+      />
     </header>
   )
 }

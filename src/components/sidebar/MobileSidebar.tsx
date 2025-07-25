@@ -1,12 +1,15 @@
-import { CreateNote } from "@components/editor/CreateNote"
+import { Suspense, lazy } from "react"
 import { CreateNote as CreateNoteButton } from "./CreateNote"
-import { DeleteNote } from "@components/editor/DeleteNote"
+import { Loader } from "@components/ui/Loader"
 import { Note } from "./Note"
 import { Sheet } from "@components/ui/Sheet"
 import { Text } from "@components/ui/Text"
 import { Title } from "@components/ui/Title"
 import { sortNotes } from "@utils/sortNotes"
 import { useSidebarToggle } from "@hooks/useSidebarToggle"
+
+const DeleteNote = lazy(() => import("@components/editor/DeleteNote"))
+const CreateNote = lazy(() => import("@components/editor/CreateNote"))
 
 type MobileSidebarProps = {
   active: boolean
@@ -66,15 +69,19 @@ export const MobileSidebar = ({ active, toggle }: MobileSidebarProps) => {
           onClick={toggleNoteCreator}
           aria-label="Create Note"
         />
-        <CreateNote
-          active={noteActive}
-          onClose={toggleNoteCreator}
-        />
-        <DeleteNote
-          id={id!}
-          active={deleteActive}
-          onClose={toggleDelete}
-        />
+        <Suspense fallback={<Loader />}>
+          <CreateNote
+            active={noteActive}
+            onClose={toggleNoteCreator}
+          />
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <DeleteNote
+            id={id!}
+            active={deleteActive}
+            onClose={toggleDelete}
+          />
+        </Suspense>
       </aside>
     </Sheet>
   )
