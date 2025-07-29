@@ -4,7 +4,7 @@ import { Link } from '@components/ui/Link';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Link', () => {
-  test('se renderiza correctamente', () => {
+  test('renders correctly', () => {
     render(
       <MemoryRouter>
         <Link to="/about">
