@@ -68,6 +68,7 @@ export const Sheet = ({
               size="icon"
               onClick={onClose}
               className="absolute top-3.5 right-2"
+              data-testid="sheet-close-button"
             >
               <X className="text-muted-foreground" />
             </Button>

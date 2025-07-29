@@ -4,10 +4,10 @@ import type {
   RefAttributes 
 } from 'react'
 import { Button } from '@components/ui/Button'
-import type { LucideProps } from 'lucide-react'
+import { type LucideProps, Globe } from 'lucide-react'
 
 type SettingButtonProps = ComponentProps<typeof Button> & {
-  Icon: ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>
+  Icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
   label: string
 }
 
@@ -15,7 +15,7 @@ type SettingButtonProps = ComponentProps<typeof Button> & {
  * Renders a button for settings in the editor.
  * This component uses the Button component for styling and accepts an Icon and label.
  */
-export const SettingButton = ({ Icon, label, ...props }: SettingButtonProps) => (
+export const SettingButton = ({ Icon = Globe, label, ...props }: SettingButtonProps) => (
   <Button
     size="icon"
     className="rounded-full"

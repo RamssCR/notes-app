@@ -17,7 +17,6 @@ const structure = {
 } as const
 
 export const Status = ({ state }: StatusProps) => {
-  if (!structure[state]) return null
   const { Icon, message } = structure[state]
 
   return (

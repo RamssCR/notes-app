@@ -28,6 +28,7 @@ export const FontSettings = () => {
         Default font style looks off? Choose between these styles.
       </Text>
       <div
+        data-testid="font-selectable"
         className="w-full flex items-center gap-2 mt-2"
         onClick={handleClick}
       >
