@@ -25,3 +25,4 @@ build: {
 }
 ```
 
+**NOTE:** use `vite-plugin-compression` to compress bundles into gzip format.
