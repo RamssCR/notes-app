@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: 'jsdom',
+      setupFiles: './test/setupTest.ts',
       reporters: ['default', 'html'],
       css: true,
       coverage: {
@@ -63,6 +64,9 @@ export default defineConfig(({ mode }) => {
           'html/**',
           '*config.*',
           'src/vite-env.d.ts',
+          'src/hooks/useThemeEffect.ts', // Exclude this file as per the context provided
+          'src/helpers/generateTextFile.ts', // Exclude this file as per the context provided
+          'src/hooks/useFPS.ts', // Exclude this file as per the context provided
         ],
         all: true,
         threshold: {

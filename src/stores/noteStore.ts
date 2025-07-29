@@ -1,5 +1,6 @@
 import type { NoteProps } from '@@types/note'
 import { create } from 'zustand'
+import type { PersistStorage } from 'zustand/middleware'
 import { persist } from 'zustand/middleware'
 
 export type NoteStore = {
@@ -10,9 +11,30 @@ export type NoteStore = {
   getNoteById: (id: string) => (state: NoteStore) => NoteProps | undefined
 }
 
+export const customStorage: PersistStorage<NoteStore> = {
+  getItem: (name: string) => {
+    const str = localStorage.getItem(name)
+    if (!str) return null
+    const parsed = JSON.parse(str)
+    parsed.state.notes = parsed.state.notes.map((note: unknown) => ({
+      ...(note as NoteProps),
+      createdAt: new Date((note as NoteProps).createdAt),
+      updatedAt: new Date((note as NoteProps).updatedAt),
+    }))
+    return parsed
+  },
+  setItem: (name: string, value: unknown) => {
+    localStorage.setItem(name, JSON.stringify(value))
+  },
+  removeItem: (name: string) => {
+    localStorage.removeItem(name)
+  },
+}
+
+
 export const noteStore = create<NoteStore>()(
   persist(
-    (set) => ({
+    (set, _get) => ({
       notes: [],
       addNote: (title) => {
         const id = crypto.randomUUID()
@@ -44,29 +66,10 @@ export const noteStore = create<NoteStore>()(
         })),
       getNoteById: (id) =>
         (state: NoteStore) => state.notes.find((note) => note.id === id),
-      getNotes: () => (state: NoteStore) => state.notes,
     }),
     {
       name: 'note-storage',
-      storage: {
-        getItem: (name) => {
-          const str = localStorage.getItem(name)
-          if (!str) return null
-          const parsed = JSON.parse(str)
-          parsed.state.notes = parsed.state.notes.map((note: unknown) => ({
-            ...(note as NoteProps),
-            createdAt: new Date((note as NoteProps).createdAt),
-            updatedAt: new Date((note as NoteProps).updatedAt),
-          }))
-          return parsed
-        },
-        setItem: (name, value) => {
-          localStorage.setItem(name, JSON.stringify(value))
-        },
-        removeItem: (name) => {
-          localStorage.removeItem(name)
-        },
-      },
+      storage: customStorage,
     }
   )
 )

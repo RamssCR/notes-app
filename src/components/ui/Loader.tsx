@@ -1,7 +1,10 @@
+import { 
+  type HTMLMotionProps, 
+  type Transition, 
+  motion 
+} from 'motion/react'
 import { type LoaderVariants, variants } from '@variants/loader'
-import { type HTMLMotionProps, type Transition, motion } from 'motion/react'
 import { classMerger } from '@utils/classMerger'
-import { DEV } from '@utils/env.config'
 
 type LoaderProps = HTMLMotionProps<'div'> & LoaderVariants
 
@@ -19,11 +22,12 @@ export const Loader = ({
   className,
   variant,
   size, 
-  position = DEV ? 'development' : 'default',
+  position,
   ...props 
 }: LoaderProps) => {
   return (
     <motion.div
+      role="status"
       className={classMerger(
         variants({ variant, size, position }),
         className

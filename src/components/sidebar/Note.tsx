@@ -24,7 +24,11 @@ export const Note = ({
   onDelete,
   ...props 
 }: NoteComponentProps) => {
-  const trimmedTitle = title.trim() === '' ? 'Untitled note' : title
+  const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+    onDelete?.(e)
+  }
 
   return (
     <Link
@@ -42,20 +46,15 @@ export const Note = ({
         <Button 
           variant="none"
           aria-label="Delete Note"
-          onClick={(e) => {
-            e.stopPropagation()
-            e.preventDefault()
-            onDelete?.(e)
-          }}
+          onClick={handleDelete}
           className={classMerger(
-            'absolute -right-2 top-1/2 -translate-y-1/2 group-hover:opacity-100 transition-opacity focus-visible:opacity-100 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-transparent',
-            active ? 'opacity-100' : 'opacity-0'
+            'absolute -right-2 top-1/2 -translate-y-1/2 group-hover:opacity-100 transition-opacity focus-visible:opacity-100 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-transparent'
           )}
         >
           <Trash2 className="size-4 hover:text-red-500" aria-hidden="true" />
         </Button>
       )}
-      <span className="sr-only">Open note {trimmedTitle}</span>
+      <span className="sr-only">Open note {title}</span>
     </Link>
   )
 }

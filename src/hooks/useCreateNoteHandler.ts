@@ -50,5 +50,6 @@ export const useCreateNoteHandler = ({ onClose }: UseCreateNoteHandler) => {
     handleChange,
     handleSubmit,
     cleanUp,
+    validate
   }
 }
