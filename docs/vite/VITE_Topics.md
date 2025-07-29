@@ -16,8 +16,8 @@
 - Environment Variables' validation and typing. ✅
 
 ## Module 4: `vite.config.ts` thoroughly
-- Complete `defineConfig` structure
-- Use of `mode`, `define`, `resolve.alias`, `build`, `plugins`
+- Complete `defineConfig` structure ✅
+- Use of `mode`, `define`, `resolve.alias`, `build`, `plugins` ✅
 - Loading plugins dynamically regarding the environment
 - config modular separation (eg: `vite.config.dev.ts`, `vite.config.prod.ts`)
 
