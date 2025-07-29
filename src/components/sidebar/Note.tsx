@@ -48,7 +48,7 @@ export const Note = ({
           aria-label="Delete Note"
           onClick={handleDelete}
           className={classMerger(
-            'absolute -right-2 top-1/2 -translate-y-1/2 group-hover:opacity-100 transition-opacity focus-visible:opacity-100 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-transparent',
+            'absolute -right-2 top-1/2 -translate-y-1/2 group-hover:opacity-100 transition-opacity focus-visible:opacity-100 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-transparent'
           )}
         >
           <Trash2 className="size-4 hover:text-red-500" aria-hidden="true" />
