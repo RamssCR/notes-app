@@ -16,7 +16,7 @@ describe('Link', () => {
     expect(screen.getByText('Ir a la página de About')).toBeDefined();
   });
 
-  test('aplica los estilos correctos', () => {
+  test('applies correct styles', () => {
     render(
       <MemoryRouter>
         <Link to="/about" className="custom-class">
