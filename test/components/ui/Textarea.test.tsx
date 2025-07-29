@@ -4,8 +4,8 @@ import { Textarea } from '@components/ui/Textarea';
 
 describe('Textarea', () => {
   test('renders component with default props', () => {
-    render(<Textarea placeholder="Escribe aquí..." />);
-    const textareaElement = screen.getByPlaceholderText('Escribe aquí...');
+    render(<Textarea placeholder="Type here..." />);
+    const textareaElement = screen.getByPlaceholderText('Type here...');
     expect(textareaElement).toBeDefined();
     expect(textareaElement.tagName).toBe('TEXTAREA');
   });
