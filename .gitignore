@@ -28,3 +28,15 @@ stats.html
 
 # Environment files
 .env*
+
+# Temporary build files
+build/
+.next/
+
+# Coverage reports
+coverage/
+html/
+lcov/
+
+# Miscellaneous
+*.tgz

@@ -42,6 +42,7 @@ export const Switch = ({
       aria-label='Switch'
     >
       <input
+        role='switch'
         type="checkbox"
         className="sr-only peer"
         checked={active}
