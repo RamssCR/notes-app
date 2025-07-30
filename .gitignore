@@ -32,6 +32,7 @@ stats.html
 # Temporary build files
 build/
 .next/
+.firebase/
 
 # Coverage reports
 coverage/
@@ -40,5 +41,6 @@ lcov/
 
 # Miscellaneous
 *.tgz
+
 # Sentry Config File
 .env.sentry-build-plugin

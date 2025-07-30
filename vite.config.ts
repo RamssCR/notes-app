@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       paths(),
       visualizer({ open: true }),
-      ...(isProduction
+      ...(isProduction || mode === 'staging'
         ? [
             sentryVitePlugin({
               org: 'ramsscr',
