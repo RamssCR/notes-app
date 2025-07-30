@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
     build: {
       target: 'esnext',
       minify: isProduction ? 'esbuild' : false,
-      sourcemap: true,
+      sourcemap: isProduction ? 'hidden' : true,
       rollupOptions: {
         output: {
           manualChunks(id) {
