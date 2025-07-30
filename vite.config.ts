@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
 import paths from 'vite-tsconfig-paths'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
@@ -20,11 +21,20 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       paths(),
       visualizer({ open: true }),
+      ...(isProduction
+        ? [
+            sentryVitePlugin({
+              org: 'ramsscr',
+              project: 'javascript-react',
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+            }),
+          ]
+        : []),
     ],
     build: {
       target: 'esnext',
       minify: isProduction ? 'esbuild' : false,
-      sourcemap: !isProduction,
+      sourcemap: isProduction ? 'hidden' : true,
       rollupOptions: {
         output: {
           manualChunks(id) {
