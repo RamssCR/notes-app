@@ -21,11 +21,15 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       paths(),
       visualizer({ open: true }),
-      sentryVitePlugin({
-        org: 'ramsscr',
-        project: 'javascript-react',
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      }),
+      ...(isProduction
+        ? [
+            sentryVitePlugin({
+              org: 'ramsscr',
+              project: 'javascript-react',
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+            }),
+          ]
+        : []),
     ],
     build: {
       target: 'esnext',
