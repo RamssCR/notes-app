@@ -22,28 +22,23 @@
 - config modular separation (eg: `vite.config.dev.ts`, `vite.config.prod.ts`)
 
 ## Module 5: Optimizing builds
-- Build with `vite build` and analysis with `rollupOptions`
-- Code splitting
-- Bundle size reduction (`terserOptions`, `esbuild`, `chunkSizeWarningLimit`)
-- Libraries tree-shaking
-- `preload`, `prefetch`, `dynamic import()`
+- Build with `vite build` and analysis with `rollupOptions` ✅
+- Code splitting ✅
+- Bundle size reduction (`terserOptions`, `esbuild`, `chunkSizeWarningLimit`) ✅
+- Libraries tree-shaking ✅
+- `preload`, `prefetch`, `dynamic import()` ✅
 
 ## Module 6: Sourcemaps and Debugging
 - Activate sourcemaps for production ✅
-- Code mapping and legible errors in production 🔃
-- Integration with Sentry, Bugsnag or TrackJS 🔜
+- Code mapping and legible errors in production ✅
+- Integration with Sentry, Bugsnag or TrackJS ✅
 
 ## Module 7: Useful Vite plugins for React
-- `@vitejs/plugin-react` and its options (JSX, fast refresh, etc)
-- `vite-plugin-inspect`, `vite-plugin-compression`, `vite-plugin-env-compatible`, `vite-plugin-svgr`
+- `@vitejs/plugin-react` and its options (JSX, fast refresh, etc) ✅
+- `vite-plugin-inspect`, `vite-plugin-compression`, `vite-plugin-env-compatible`, `vite-plugin-svgr` ✅
 
 ## Module 8: DevOps with Vite
 - Custom builds for different CI/CD (GitHub Actions, Netlify, Vercel)
 - Safe Environment Variables per environment
 - Caching and purging builds in pipelines
 - Deploy preview with different `base`
-
-## Module 9: Real cases and advance patterns
-- Multi App or Microfrontends with Vite
-- Usage with monorepos and `pnpm` workspaces
-- SSR with React + Vite (eg: `vite-ssr`, `vite-plugin-ssr`)
