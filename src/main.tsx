@@ -7,7 +7,7 @@ import '@libs/firebase.ts'
 
 Sentry.init({
   dsn: import.meta.env.VITE_LOGGER_URL,
-  sendDefaultPii: true,
+  sendDefaultPii: false,
   environment: __IS_STAGING__ ? 'staging' : 'production',
 })
 
